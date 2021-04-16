@@ -16,6 +16,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Backend_Dev_Eindwerk.Repositories;
 using Backend_Dev_Eindwerk.Services;
+using AutoMapper;
 
 namespace Backend_Dev_Eindwerk
 {
@@ -32,6 +33,8 @@ namespace Backend_Dev_Eindwerk
         public void ConfigureServices(IServiceCollection services)
         {
 
+            services.AddAutoMapper(typeof(Startup));  
+
             services.Configure<ConnectionStrings>(Configuration.GetSection("ConnectionStrings"));
 
             services.AddDbContext<EindwerkContext>();
@@ -43,6 +46,7 @@ namespace Backend_Dev_Eindwerk
             services.AddTransient<IPlayerRepository, PlayerRepository>();
             services.AddTransient<ITeamRepository, TeamRepository>();
             services.AddTransient<ILeagueRepository, LeagueRepository>();
+            services.AddTransient<ISponsorRepository, SponsorRepository>();
  
             services.AddTransient<IPlayerService, PlayerService>();
 

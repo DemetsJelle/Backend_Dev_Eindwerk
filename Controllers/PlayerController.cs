@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Backend_Dev_Eindwerk.Data;
+using Backend_Dev_Eindwerk.DTO;
 using Backend_Dev_Eindwerk.Models;
 using Backend_Dev_Eindwerk.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -208,6 +209,35 @@ namespace Backend_Dev_Eindwerk.Controllers
         }
         #endregion
 
+        #region  Sponsors
+        [HttpGet]
+        [Route("sponsors")]
+        public async Task<List<Sponsor>> GetSponsors()
+        {
+            return await _playerService.GetSponsors();
+        }
 
+        [HttpGet]
+        [Route("sponsor/id/{id}")]
+        public async Task<League> GetSponsorById(Guid id)
+        {
+            return await _playerService.GetLeagueById(id);
+        }
+
+        [HttpPost]
+        [Route("sponsor")]
+        public async Task<ActionResult<SponsorDTO>> AddSponsor(SponsorDTO newSponsor)
+        {
+            try
+            {
+               return await _playerService.AddSponsor(newSponsor);
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+                return new StatusCodeResult(500);
+            }
+        }
+        #endregion
     }
 }

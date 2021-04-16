@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Backend_Dev_Eindwerk.Migrations
 {
     [DbContext(typeof(EindwerkContext))]
-    [Migration("20210415101342_first")]
-    partial class first
+    [Migration("20210416130016_seeding")]
+    partial class seeding
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -41,6 +41,26 @@ namespace Backend_Dev_Eindwerk.Migrations
                     b.ToTable("Leagues");
                 });
 
+            modelBuilder.Entity("Backend_Dev_Eindwerk.Models.LeagueSponsor", b =>
+                {
+                    b.Property<Guid>("LeaugeId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("SponsorId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("LeagueId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("LeaugeId", "SponsorId");
+
+                    b.HasIndex("LeagueId");
+
+                    b.HasIndex("SponsorId");
+
+                    b.ToTable("LeagueSponsor");
+                });
+
             modelBuilder.Entity("Backend_Dev_Eindwerk.Models.Player", b =>
                 {
                     b.Property<Guid>("PlayerId")
@@ -59,9 +79,28 @@ namespace Backend_Dev_Eindwerk.Migrations
                     b.Property<string>("Nationality")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid>("TeamId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("PlayerId");
 
+                    b.HasIndex("TeamId");
+
                     b.ToTable("Players");
+                });
+
+            modelBuilder.Entity("Backend_Dev_Eindwerk.Models.Sponsor", b =>
+                {
+                    b.Property<Guid>("SponsorId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("SponsorId");
+
+                    b.ToTable("Sponsor");
                 });
 
             modelBuilder.Entity("Backend_Dev_Eindwerk.Models.Team", b =>
@@ -85,6 +124,47 @@ namespace Backend_Dev_Eindwerk.Migrations
                     b.HasKey("TeamId");
 
                     b.ToTable("Teams");
+                });
+
+            modelBuilder.Entity("Backend_Dev_Eindwerk.Models.LeagueSponsor", b =>
+                {
+                    b.HasOne("Backend_Dev_Eindwerk.Models.League", null)
+                        .WithMany("LeagueSponsor")
+                        .HasForeignKey("LeagueId");
+
+                    b.HasOne("Backend_Dev_Eindwerk.Models.Sponsor", "Sponsor")
+                        .WithMany("LeagueSponsor")
+                        .HasForeignKey("SponsorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Sponsor");
+                });
+
+            modelBuilder.Entity("Backend_Dev_Eindwerk.Models.Player", b =>
+                {
+                    b.HasOne("Backend_Dev_Eindwerk.Models.Team", "team")
+                        .WithMany("Players")
+                        .HasForeignKey("TeamId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("team");
+                });
+
+            modelBuilder.Entity("Backend_Dev_Eindwerk.Models.League", b =>
+                {
+                    b.Navigation("LeagueSponsor");
+                });
+
+            modelBuilder.Entity("Backend_Dev_Eindwerk.Models.Sponsor", b =>
+                {
+                    b.Navigation("LeagueSponsor");
+                });
+
+            modelBuilder.Entity("Backend_Dev_Eindwerk.Models.Team", b =>
+                {
+                    b.Navigation("Players");
                 });
 #pragma warning restore 612, 618
         }

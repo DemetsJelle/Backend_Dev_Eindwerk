@@ -12,5 +12,9 @@ namespace Backend_Dev_Eindwerk.Models
 
         public String Nationality { get; set; }
 
+        public Guid TeamId {get;set;}
+
+        public Team team {get;set;}
+
     }
 }
