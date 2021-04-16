@@ -25,6 +25,9 @@ namespace Backend_Dev_Eindwerk.Services
         Task<Team> GetTeamById(Guid id);
         Task<List<Team>> GetTeams();
         Task<List<Team>> GetTeamsByOrigen(string origen);
+        Task<Player> UpdatePlayer(Player updatePlayer);
+        Task<Team> UpdateTeam(Team updateTeam);
+        Task<League> UpdateLeague(League updateLeague);
     }
 
     public class PlayerService : IPlayerService
@@ -75,6 +78,10 @@ namespace Backend_Dev_Eindwerk.Services
         {
             return await _playerRepository.AddPlayer(newPlayer);
         }
+        public async Task<Player> UpdatePlayer(Player updatePlayer)
+        {
+            return await _playerRepository.UpdatePlayer(updatePlayer);
+        }
         #endregion
 
         #region Teams
@@ -107,6 +114,11 @@ namespace Backend_Dev_Eindwerk.Services
         {
             return await _teamRepository.AddTeam(newTeam);
         }
+
+        public async Task<Team> UpdateTeam(Team updateTeam)
+        {
+            return await _teamRepository.UpdateTeam(updateTeam);
+        }
         #endregion
 
         #region Leagues
@@ -132,6 +144,11 @@ namespace Backend_Dev_Eindwerk.Services
         public async Task<League> AddLeague(League newLeague)
         {
             return await _leagueRepository.AddLeague(newLeague);
+        }
+
+        public async Task<League> UpdateLeague(League updateLeague)
+        {
+            return await _leagueRepository.UpdateLeague(updateLeague);
         }
         #endregion
 

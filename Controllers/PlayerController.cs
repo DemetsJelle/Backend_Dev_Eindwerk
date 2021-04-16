@@ -69,6 +69,20 @@ namespace Backend_Dev_Eindwerk.Controllers
                 return new StatusCodeResult(500);
             }
         }
+
+        [HttpPut]
+        [Route("player")]
+        public async Task<ActionResult<Player>> UpdatePlayer(Player updatePlayer)
+        {
+            try
+            {
+               return await _playerService.UpdatePlayer(updatePlayer);
+            }
+            catch(Exception ex)
+            {
+                return new StatusCodeResult(500);
+            }
+        }
         #endregion
 
         #region  Teams
@@ -120,6 +134,20 @@ namespace Backend_Dev_Eindwerk.Controllers
                 return new StatusCodeResult(500);
             }
         }
+
+        [HttpPut]
+        [Route("team")]
+        public async Task<ActionResult<Team>> UpdateTeam(Team updateTeam)
+        {
+            try
+            {
+               return await _playerService.UpdateTeam(updateTeam);
+            }
+            catch(Exception ex)
+            {
+                return new StatusCodeResult(500);
+            }
+        }
         #endregion
 
         #region  Leagues
@@ -158,6 +186,20 @@ namespace Backend_Dev_Eindwerk.Controllers
             try
             {
                return await _playerService.AddLeague(newLeague);
+            }
+            catch(Exception ex)
+            {
+                return new StatusCodeResult(500);
+            }
+        }
+
+        [HttpPut]
+        [Route("league")]
+        public async Task<ActionResult<League>> UpdateLeague(League updateLeague)
+        {
+            try
+            {
+               return await _playerService.UpdateLeague(updateLeague);
             }
             catch(Exception ex)
             {

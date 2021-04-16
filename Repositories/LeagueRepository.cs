@@ -16,6 +16,7 @@ namespace Backend_Dev_Eindwerk.Repositories
         Task<League> GetLeagueById(Guid id);
         Task<League> GetLeagueByRegion(string region);
         Task<List<League>> GetLeagues();
+        Task<League> UpdateLeague(League updateleague);
     }
 
     public class LeagueRepository : ILeagueRepository
@@ -50,6 +51,13 @@ namespace Backend_Dev_Eindwerk.Repositories
             await _context.Leagues.AddAsync(newLeague);
             await _context.SaveChangesAsync();
             return newLeague;
+        }
+
+        public async Task<League> UpdateLeague(League updateLeague)
+        {
+            _context.Leagues.Update(updateLeague);
+            await _context.SaveChangesAsync();
+            return updateLeague;
         }
     }
 }

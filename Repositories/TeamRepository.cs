@@ -16,6 +16,7 @@ namespace Backend_Dev_Eindwerk.Repositories
         Task<Team> GetTeamById(Guid id);
         Task<List<Team>> GetTeams();
         Task<List<Team>> GetTeamsByOrigen(string origen);
+        Task<Team> UpdateTeam(Team updateTeam);
     }
 
     public class TeamRepository : ITeamRepository
@@ -56,6 +57,13 @@ namespace Backend_Dev_Eindwerk.Repositories
             await _context.Teams.AddAsync(newTeam);
             await _context.SaveChangesAsync();
             return newTeam;
+        }
+
+        public async Task<Team> UpdateTeam(Team updateTeam)
+        {
+            _context.Teams.Update(updateTeam);
+            await _context.SaveChangesAsync();
+            return updateTeam;
         }
     }
 }

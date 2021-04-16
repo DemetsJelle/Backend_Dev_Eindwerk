@@ -16,6 +16,7 @@ namespace Backend_Dev_Eindwerk.Repositories
         Task<Player> GetPlayerByName(string name);
         Task<List<Player>> GetPlayers();
         Task<List<Player>> GetPlayersByNationality(string nationality);
+        Task<Player> UpdatePlayer(Player updatePlayer);
     }
 
     public class PlayerRepository : IPlayerRepository
@@ -56,6 +57,13 @@ namespace Backend_Dev_Eindwerk.Repositories
             await _context.Players.AddAsync(newPlayer);
             await _context.SaveChangesAsync();
             return newPlayer;
+        }
+
+        public async Task<Player> UpdatePlayer(Player updatePlayer)
+        {
+            _context.Players.Update(updatePlayer);
+            await _context.SaveChangesAsync();
+            return updatePlayer;
         }
     }
 }
