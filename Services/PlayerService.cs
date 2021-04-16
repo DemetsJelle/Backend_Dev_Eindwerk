@@ -26,11 +26,11 @@ namespace Backend_Dev_Eindwerk.Services
         Task<Sponsor> GetSponsorById(Guid id);
         Task<Sponsor> GetSponsorByName(string name);
         Task<List<Sponsor>> GetSponsors();
-        Task<Team> GetTeamByAbbreviation(string abbrev);
-        Task<Team> GetTeamById(Guid id);
-        Task<Team> GetTeamByName(string name);
-        Task<List<Team>> GetTeams();
-        Task<List<Team>> GetTeamsByOrigen(string origen);
+        Task<Team> GetTeamByAbbreviation(string abbrev, bool includePlayers);
+        Task<Team> GetTeamById(Guid id, bool includePlayers);
+        Task<Team> GetTeamByName(string name, bool includePlayers);
+        Task<List<Team>> GetTeams(bool includePlayers);
+        Task<List<Team>> GetTeamsByOrigen(string origen, bool includePlayers);
         Task<League> UpdateLeague(League updateLeague);
         Task<Player> UpdatePlayer(Player updatePlayer);
         Task<Team> UpdateTeam(Team updateTeam);
@@ -97,29 +97,29 @@ namespace Backend_Dev_Eindwerk.Services
         #endregion
 
         #region Teams
-        public async Task<List<Team>> GetTeams()
+        public async Task<List<Team>> GetTeams(bool includePlayers)
         {
-            return await _teamRepository.GetTeams();
+            return await _teamRepository.GetTeams(includePlayers);
         }
 
-        public async Task<List<Team>> GetTeamsByOrigen(string origen)
+        public async Task<List<Team>> GetTeamsByOrigen(string origen, bool includePlayers)
         {
-            return await _teamRepository.GetTeamsByOrigen(origen);
+            return await _teamRepository.GetTeamsByOrigen(origen, includePlayers);
         }
 
-        public async Task<Team> GetTeamById(Guid id)
+        public async Task<Team> GetTeamById(Guid id, bool includePlayers)
         {
-            return await _teamRepository.GetTeamById(id);
+            return await _teamRepository.GetTeamById(id, includePlayers);
         }
 
-        public async Task<Team> GetTeamByAbbreviation(string abbrev)
+        public async Task<Team> GetTeamByAbbreviation(string abbrev, bool includePlayers)
         {
-            return await _teamRepository.GetTeamByAbbreviation(abbrev);
+            return await _teamRepository.GetTeamByAbbreviation(abbrev, includePlayers);
         }
 
-        public async Task<Team> GetTeamByName(string name)
+        public async Task<Team> GetTeamByName(string name, bool includePlayers)
         {
-            return await _teamRepository.GetTeamByName(name);
+            return await _teamRepository.GetTeamByName(name, includePlayers);
         }
 
         public async Task<Team> AddTeam(Team newTeam)

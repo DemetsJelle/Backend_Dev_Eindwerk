@@ -1,4 +1,5 @@
 using System;
+using System.Text.Json.Serialization;
 
 namespace Backend_Dev_Eindwerk.Models
 {
@@ -12,8 +13,10 @@ namespace Backend_Dev_Eindwerk.Models
 
         public String Nationality { get; set; }
 
+        [JsonIgnore]
         public Guid TeamId {get;set;}
 
+        [JsonIgnore]    
         public Team team {get;set;}
 
     }

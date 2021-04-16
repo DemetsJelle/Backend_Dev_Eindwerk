@@ -11,11 +11,11 @@ namespace Backend_Dev_Eindwerk.Repositories
     public interface ITeamRepository
     {
         Task<Team> AddTeam(Team newTeam);
-        Task<Team> GetTeamByAbbreviation(string abbrev);
-        Task<Team> GetTeamByName(string name);
-        Task<Team> GetTeamById(Guid id);
-        Task<List<Team>> GetTeams();
-        Task<List<Team>> GetTeamsByOrigen(string origen);
+        Task<Team> GetTeamByAbbreviation(string abbrev, bool includePlayers);
+        Task<Team> GetTeamByName(string name, bool includePlayers);
+        Task<Team> GetTeamById(Guid id, bool includePlayers);
+        Task<List<Team>> GetTeams(bool includePlayesr);
+        Task<List<Team>> GetTeamsByOrigen(string origen, bool includePlayers);
         Task<Team> UpdateTeam(Team updateTeam);
     }
 
@@ -27,27 +27,30 @@ namespace Backend_Dev_Eindwerk.Repositories
             _context = context;
         }
 
-        public async Task<List<Team>> GetTeams()
+        public async Task<List<Team>> GetTeams(bool includePlayers)
         {
-            return await _context.Teams.ToListAsync();
+            if(includePlayers)
+                return await _context.Teams.Include(r => r.Players).ToListAsync();
+            else
+                return await _context.Teams.ToListAsync();
         }
 
-        public async Task<Team> GetTeamById(Guid id)
+        public async Task<Team> GetTeamById(Guid id, bool includePlayers)
         {
             return await _context.Teams.Where(t => t.TeamId == id).SingleOrDefaultAsync();
         }
 
-        public async Task<Team> GetTeamByName(string name)
+        public async Task<Team> GetTeamByName(string name, bool includePlayers)
         {
             return await _context.Teams.Where(t => t.Name == name).SingleOrDefaultAsync();
         }
 
-        public async Task<Team> GetTeamByAbbreviation(string abbrev)
+        public async Task<Team> GetTeamByAbbreviation(string abbrev, bool includePlayers)
         {
             return await _context.Teams.Where(t => t.Abbreviation == abbrev).SingleOrDefaultAsync();
         }
 
-        public async Task<List<Team>> GetTeamsByOrigen(string origen)
+        public async Task<List<Team>> GetTeamsByOrigen(string origen, bool includePlayers)
         {
             return await _context.Teams.Where(t => t.LandOfOrigen == origen).ToListAsync();
         }
