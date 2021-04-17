@@ -21,7 +21,7 @@ namespace Backend_Dev_Eindwerk.Services
         Task<Player> GetPlayerById(Guid id);
         Task<Player> GetPlayerByIgn(string ign);
         Task<Player> GetPlayerByName(string name);
-        Task<List<Player>> GetPlayers();
+        Task<List<Player>> GetPlayers(bool includeTeam);
         Task<List<Player>> GetPlayersByNationality(string nationality);
         Task<Sponsor> GetSponsorById(Guid id);
         Task<Sponsor> GetSponsorByName(string name);
@@ -61,9 +61,9 @@ namespace Backend_Dev_Eindwerk.Services
         }
 
         #region Player
-        public async Task<List<Player>> GetPlayers()
+        public async Task<List<Player>> GetPlayers(bool includeTeam)
         {
-            return await _playerRepository.GetPlayers();
+            return await _playerRepository.GetPlayers(includeTeam);
         }
 
         public async Task<Player> GetPlayerById(Guid id)

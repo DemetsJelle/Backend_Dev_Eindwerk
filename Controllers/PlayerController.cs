@@ -24,9 +24,9 @@ namespace Backend_Dev_Eindwerk.Controllers
         #region Player
         [HttpGet]
         [Route("players")]
-        public async Task<List<Player>> GetPlayers()
+        public async Task<List<Player>> GetPlayers(bool includeTeam)
         {
-            return await _playerService.GetPlayers();
+            return await _playerService.GetPlayers(includeTeam);
         }
 
         [HttpGet]
@@ -96,28 +96,28 @@ namespace Backend_Dev_Eindwerk.Controllers
 
         [HttpGet]
         [Route("Team/origen/{origen}")]
-        public async Task<List<Team>> GetTeamsByOrigen(string origen, bool includePlayers = false)
+        public async Task<List<Team>> GetTeamsByOrigen(string origen, bool includePlayers)
         {
             return await _playerService.GetTeamsByOrigen(origen, includePlayers);
         }
 
         [HttpGet]
         [Route("Team/id/{id}")]
-        public async Task<Team> GetTeamsById(Guid id, bool includePlayers = false)
+        public async Task<Team> GetTeamsById(Guid id, bool includePlayers)
         {
             return await _playerService.GetTeamById(id, includePlayers);
         }
 
         [HttpGet]
         [Route("Team/Abbreviation/{abbreviation}")]
-        public async Task<Team> GetTeamsByAbbreviation(string abbreviation, bool includePlayers = false)
+        public async Task<Team> GetTeamsByAbbreviation(string abbreviation, bool includePlayers)
         {
-            return await _playerService.GetTeamByAbbreviation(abbreviation, includePlayers = false);
+            return await _playerService.GetTeamByAbbreviation(abbreviation, includePlayers);
         }
 
         [HttpGet]
         [Route("Team/name/{name}")]
-        public async Task<Team> GetTeamsByName(string name, bool includePlayers = false)
+        public async Task<Team> GetTeamsByName(string name, bool includePlayers)
         {
             return await _playerService.GetTeamByName(name, includePlayers);
         }

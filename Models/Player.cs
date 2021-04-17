@@ -13,7 +13,7 @@ namespace Backend_Dev_Eindwerk.Models
 
         public String Nationality { get; set; }
 
-        [JsonIgnore]
+        //[JsonIgnore]
         public Guid TeamId {get;set;}
 
         [JsonIgnore]    

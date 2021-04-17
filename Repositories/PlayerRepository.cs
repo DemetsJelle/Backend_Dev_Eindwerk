@@ -14,7 +14,7 @@ namespace Backend_Dev_Eindwerk.Repositories
         Task<Player> GetPlayerById(Guid Id);
         Task<Player> GetPlayerByIGN(string ign);
         Task<Player> GetPlayerByName(string name);
-        Task<List<Player>> GetPlayers();
+        Task<List<Player>> GetPlayers(bool includeTeam);
         Task<List<Player>> GetPlayersByNationality(string nationality);
         Task<Player> UpdatePlayer(Player updatePlayer);
     }
@@ -28,9 +28,12 @@ namespace Backend_Dev_Eindwerk.Repositories
             _context = context;
         }
 
-        public async Task<List<Player>> GetPlayers()
+        public async Task<List<Player>> GetPlayers(bool includeTeam)
         {
-            return await _context.Players.ToListAsync();
+            if(includeTeam)
+                return await _context.Players.Include(p => p.team).ToListAsync();
+            else
+                return await _context.Players.ToListAsync();
         }
 
         public async Task<Player> GetPlayerById(Guid id)

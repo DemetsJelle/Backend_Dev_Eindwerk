@@ -30,29 +30,41 @@ namespace Backend_Dev_Eindwerk.Repositories
         public async Task<List<Team>> GetTeams(bool includePlayers)
         {
             if(includePlayers)
-                return await _context.Teams.Include(r => r.Players).ToListAsync();
+                return await _context.Teams.Include(t => t.Players).ToListAsync();
             else
                 return await _context.Teams.ToListAsync();
         }
 
         public async Task<Team> GetTeamById(Guid id, bool includePlayers)
         {
-            return await _context.Teams.Where(t => t.TeamId == id).SingleOrDefaultAsync();
+            if(includePlayers)
+                return await _context.Teams.Include(t => t.Players).Where(t => t.TeamId == id).SingleOrDefaultAsync();
+            else
+                return await _context.Teams.Where(t => t.TeamId == id).SingleOrDefaultAsync();  
         }
 
         public async Task<Team> GetTeamByName(string name, bool includePlayers)
         {
-            return await _context.Teams.Where(t => t.Name == name).SingleOrDefaultAsync();
+            if(includePlayers)
+                return await _context.Teams.Include(t => t.Players).Where(t => t.Name == name).SingleOrDefaultAsync();
+            else
+                return await _context.Teams.Where(t => t.Name == name).SingleOrDefaultAsync();
         }
 
         public async Task<Team> GetTeamByAbbreviation(string abbrev, bool includePlayers)
         {
-            return await _context.Teams.Where(t => t.Abbreviation == abbrev).SingleOrDefaultAsync();
+            if(includePlayers)
+                return await _context.Teams.Include(t => t.Players).Where(t => t.Abbreviation == abbrev).SingleOrDefaultAsync();
+            else
+                return await _context.Teams.Where(t => t.Abbreviation == abbrev).SingleOrDefaultAsync();
         }
 
         public async Task<List<Team>> GetTeamsByOrigen(string origen, bool includePlayers)
         {
-            return await _context.Teams.Where(t => t.LandOfOrigen == origen).ToListAsync();
+            if(includePlayers)
+                return await _context.Teams.Include(t => t.Players).Where(t => t.LandOfOrigen == origen).ToListAsync();
+            else
+                return await _context.Teams.Where(t => t.LandOfOrigen == origen).ToListAsync();
         }
 
         public async Task<Team> AddTeam(Team newTeam)
