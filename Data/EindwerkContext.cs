@@ -14,6 +14,7 @@ namespace Backend_Dev_Eindwerk.Data
         DbSet<Team> Teams { get; set; }
         DbSet<League> Leagues { get; set; }
         DbSet<Sponsor> Sponsor{get;set;}
+        DbSet<LeagueSponsor> LeagueSponsors{get;set;}
         Task<int> SaveChangesAsync(CancellationToken cancellation = default);
     }
 
@@ -25,6 +26,7 @@ namespace Backend_Dev_Eindwerk.Data
 
         public DbSet<League> Leagues { get; set; }
         public DbSet<Sponsor> Sponsor {get;set;}
+        public DbSet<LeagueSponsor> LeagueSponsors{get;set;}
         private ConnectionStrings _connectionStrings;
 
         public EindwerkContext(DbContextOptions<EindwerkContext> options, IOptions<ConnectionStrings> connectionStrings)
@@ -38,7 +40,7 @@ namespace Backend_Dev_Eindwerk.Data
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<LeagueSponsor>().HasKey(ls => new {ls.LeaugeId, ls.SponsorId});
+            modelBuilder.Entity<LeagueSponsor>().HasKey(ls => new {ls.LeagueId, ls.SponsorId});
 
             modelBuilder.Entity<Team>().HasData(new Team() { TeamId = Guid.Parse("5b22b05a-10bd-4e8a-aedd-07638ed0c510"), Name = "Team Liquid", Abbreviation = "TL", LandOfOrigen = "The Netherlands", LeagueId = Guid.Parse("38690d3d-15ca-4aa0-a78c-4dfd911ac6b7") });
             modelBuilder.Entity<Team>().HasData(new Team() { TeamId = Guid.Parse("f8cc2164-dfff-4d27-b8e1-e21b882cc11b"), Name = "Fnatic", Abbreviation = "FNC", LandOfOrigen = "Great Britain", LeagueId = Guid.Parse("f4e30e73-e3ae-4237-9890-e0693acc552b") });

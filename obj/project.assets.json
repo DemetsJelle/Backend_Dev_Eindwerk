@@ -5655,11 +5655,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\2MCT\\Backend\\Backend_Dev_Eindwerk\\Backend_Dev_Eindwerk.csproj",
+      "projectUniqueName": "c:\\2MCT\\Backend\\EindProject\\Backend_Dev_Eindwerk\\Backend_Dev_Eindwerk.csproj",
       "projectName": "Backend_Dev_Eindwerk",
-      "projectPath": "c:\\2MCT\\Backend\\Backend_Dev_Eindwerk\\Backend_Dev_Eindwerk.csproj",
+      "projectPath": "c:\\2MCT\\Backend\\EindProject\\Backend_Dev_Eindwerk\\Backend_Dev_Eindwerk.csproj",
       "packagesPath": "C:\\Users\\jelle\\.nuget\\packages\\",
-      "outputPath": "c:\\2MCT\\Backend\\Backend_Dev_Eindwerk\\obj\\",
+      "outputPath": "c:\\2MCT\\Backend\\EindProject\\Backend_Dev_Eindwerk\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\",

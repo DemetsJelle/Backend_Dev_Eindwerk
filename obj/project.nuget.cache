@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "JHhX8mxSP5c5PhwsTfJzWRYFY9TZyFvA2wOr1SxdjB7qLKgfJ/BktjnfNaIaVm/E1qvF/T6k9pToXSjzTM3HbA==",
+  "dgSpecHash": "tgWMQm8qwVtAF0X+pj5+dOTW6vNABzCcqUVZpKel/5H+2rb2Qe/s1B7QOeBBZkMmypT4Hw5+NOfbwHlpbmG4rg==",
   "success": true,
-  "projectFilePath": "C:\\2MCT\\Backend\\Backend_Dev_Eindwerk\\Backend_Dev_Eindwerk.csproj",
+  "projectFilePath": "C:\\2MCT\\Backend\\EindProject\\Backend_Dev_Eindwerk\\Backend_Dev_Eindwerk.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jelle\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\jelle\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.1\\automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",

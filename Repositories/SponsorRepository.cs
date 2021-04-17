@@ -13,7 +13,7 @@ namespace Backend_Dev_Eindwerk.Repositories
         Task<Sponsor> AddSponsor(Sponsor newSponsor);
         Task<Sponsor> GetSponsorByName(string name);
         Task<Sponsor> GetSponsorById(Guid id);
-        Task<List<Sponsor>> GetSponsors();
+        Task<List<Sponsor>> GetSponsors(bool includeLeagues);
         Task<Sponsor> UpdateSponsor(Sponsor updateSponsor);
     }
 
@@ -25,9 +25,12 @@ namespace Backend_Dev_Eindwerk.Repositories
             _context = context;
         }
 
-        public async Task<List<Sponsor>> GetSponsors()
+        public async Task<List<Sponsor>> GetSponsors(bool includeLeagues)
         {
-            return await _context.Sponsor.ToListAsync();
+            if(includeLeagues)
+                return await _context.Sponsor.Include(s => s.LeagueSponsors).ToListAsync();
+            else
+                return await _context.Sponsor.ToListAsync();
         }
 
         public async Task<Sponsor> GetSponsorById(Guid id)

@@ -10,6 +10,7 @@ namespace Backend_Dev_Eindwerk.DTO
         public AutoMapping()
         {
             CreateMap<LeagueDTO , League>();
+            CreateMap<League , LeagueDTO>();
             CreateMap<SponsorDTO , Sponsor>(); 
         }
     }

@@ -11,7 +11,7 @@ namespace Backend_Dev_Eindwerk.Models
         public string Abbreviation { get; set; }
         public string Region { get; set; }
 
-        //[JsonIgnore]
-        public List<LeagueSponsor> LeagueSponsor {get;set;}
+        [JsonIgnore]
+        public List<LeagueSponsor> LeagueSponsors {get;set;}
     }
 }

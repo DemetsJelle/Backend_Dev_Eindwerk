@@ -17,7 +17,7 @@ namespace Backend_Dev_Eindwerk.Services
         Task<League> GetLeagueByAbbreviation(string abbrev);
         Task<League> GetLeagueById(Guid id);
         Task<League> GetLeagueByRegion(string region);
-        Task<List<League>> GetLeagues();
+        Task<List<LeagueDTO>> GetLeagues(bool includeSponsors);
         Task<Player> GetPlayerById(Guid id);
         Task<Player> GetPlayerByIgn(string ign);
         Task<Player> GetPlayerByName(string name);
@@ -25,7 +25,7 @@ namespace Backend_Dev_Eindwerk.Services
         Task<List<Player>> GetPlayersByNationality(string nationality);
         Task<Sponsor> GetSponsorById(Guid id);
         Task<Sponsor> GetSponsorByName(string name);
-        Task<List<Sponsor>> GetSponsors();
+        Task<List<Sponsor>> GetSponsors(bool includeLeagues);
         Task<Team> GetTeamByAbbreviation(string abbrev, bool includePlayers);
         Task<Team> GetTeamById(Guid id, bool includePlayers);
         Task<Team> GetTeamByName(string name, bool includePlayers);
@@ -134,9 +134,9 @@ namespace Backend_Dev_Eindwerk.Services
         #endregion
 
         #region Leagues
-        public async Task<List<League>> GetLeagues()
+        public async Task<List<LeagueDTO>> GetLeagues(bool includeSponsors)
         {
-            return await _leagueRepository.GetLeagues();
+            return _mapper.Map<List<LeagueDTO>>(await _leagueRepository.GetLeagues(includeSponsors));
         }
         public async Task<League> GetLeagueById(Guid id)
         {
@@ -165,9 +165,9 @@ namespace Backend_Dev_Eindwerk.Services
         #endregion
 
         #region  Sponsor
-        public async Task<List<Sponsor>> GetSponsors()
+        public async Task<List<Sponsor>> GetSponsors(bool includeLeagues)
         {
-            return await _sponsorRepository.GetSponsors();
+            return await _sponsorRepository.GetSponsors(includeLeagues);
         }
 
         public async Task<Sponsor> GetSponsorById(Guid id)
@@ -184,13 +184,12 @@ namespace Backend_Dev_Eindwerk.Services
         {
             try
             {
-
                 Sponsor newSponsor = _mapper.Map<Sponsor>(sponsor);
 
-                newSponsor.LeagueSponsor = new List<LeagueSponsor>();
+                newSponsor.LeagueSponsors = new List<LeagueSponsor>();
                 foreach (var leagueId in sponsor.Leagues)
                 {
-                    newSponsor.LeagueSponsor.Add(new LeagueSponsor() { LeaugeId = leagueId });
+                    newSponsor.LeagueSponsors.Add(new LeagueSponsor() { LeagueId = leagueId });
                 }
                 await _sponsorRepository.AddSponsor(newSponsor);
 

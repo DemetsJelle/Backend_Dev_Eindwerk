@@ -10,6 +10,6 @@ namespace Backend_Dev_Eindwerk.Models
         public String Name { get; set; }
 
         [JsonIgnore]
-        public List<LeagueSponsor> LeagueSponsor {get;set;}
+        public List<LeagueSponsor> LeagueSponsors {get;set;}
     }
 }

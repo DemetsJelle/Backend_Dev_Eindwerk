@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\2MCT\\Backend\\Backend_Dev_Eindwerk\\Backend_Dev_Eindwerk.csproj": {}
+    "C:\\2MCT\\Backend\\EindProject\\Backend_Dev_Eindwerk\\Backend_Dev_Eindwerk.csproj": {}
   },
   "projects": {
-    "C:\\2MCT\\Backend\\Backend_Dev_Eindwerk\\Backend_Dev_Eindwerk.csproj": {
+    "C:\\2MCT\\Backend\\EindProject\\Backend_Dev_Eindwerk\\Backend_Dev_Eindwerk.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\2MCT\\Backend\\Backend_Dev_Eindwerk\\Backend_Dev_Eindwerk.csproj",
+        "projectUniqueName": "C:\\2MCT\\Backend\\EindProject\\Backend_Dev_Eindwerk\\Backend_Dev_Eindwerk.csproj",
         "projectName": "Backend_Dev_Eindwerk",
-        "projectPath": "C:\\2MCT\\Backend\\Backend_Dev_Eindwerk\\Backend_Dev_Eindwerk.csproj",
+        "projectPath": "C:\\2MCT\\Backend\\EindProject\\Backend_Dev_Eindwerk\\Backend_Dev_Eindwerk.csproj",
         "packagesPath": "C:\\Users\\jelle\\.nuget\\packages\\",
-        "outputPath": "C:\\2MCT\\Backend\\Backend_Dev_Eindwerk\\obj\\",
+        "outputPath": "C:\\2MCT\\Backend\\EindProject\\Backend_Dev_Eindwerk\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\",

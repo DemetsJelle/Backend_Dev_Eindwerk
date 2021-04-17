@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Backend_Dev_Eindwerk.Migrations
 {
     [DbContext(typeof(EindwerkContext))]
-    [Migration("20210416130134_seeding2")]
-    partial class seeding2
+    [Migration("20210417114557_seeding")]
+    partial class seeding
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -66,22 +66,17 @@ namespace Backend_Dev_Eindwerk.Migrations
 
             modelBuilder.Entity("Backend_Dev_Eindwerk.Models.LeagueSponsor", b =>
                 {
-                    b.Property<Guid>("LeaugeId")
+                    b.Property<Guid>("LeagueId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("SponsorId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("LeagueId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("LeaugeId", "SponsorId");
-
-                    b.HasIndex("LeagueId");
+                    b.HasKey("LeagueId", "SponsorId");
 
                     b.HasIndex("SponsorId");
 
-                    b.ToTable("LeagueSponsor");
+                    b.ToTable("LeagueSponsors");
                 });
 
             modelBuilder.Entity("Backend_Dev_Eindwerk.Models.Player", b =>
@@ -234,11 +229,13 @@ namespace Backend_Dev_Eindwerk.Migrations
             modelBuilder.Entity("Backend_Dev_Eindwerk.Models.LeagueSponsor", b =>
                 {
                     b.HasOne("Backend_Dev_Eindwerk.Models.League", null)
-                        .WithMany("LeagueSponsor")
-                        .HasForeignKey("LeagueId");
+                        .WithMany("LeagueSponsors")
+                        .HasForeignKey("LeagueId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Backend_Dev_Eindwerk.Models.Sponsor", "Sponsor")
-                        .WithMany("LeagueSponsor")
+                        .WithMany("LeagueSponsors")
                         .HasForeignKey("SponsorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -259,12 +256,12 @@ namespace Backend_Dev_Eindwerk.Migrations
 
             modelBuilder.Entity("Backend_Dev_Eindwerk.Models.League", b =>
                 {
-                    b.Navigation("LeagueSponsor");
+                    b.Navigation("LeagueSponsors");
                 });
 
             modelBuilder.Entity("Backend_Dev_Eindwerk.Models.Sponsor", b =>
                 {
-                    b.Navigation("LeagueSponsor");
+                    b.Navigation("LeagueSponsors");
                 });
 
             modelBuilder.Entity("Backend_Dev_Eindwerk.Models.Team", b =>

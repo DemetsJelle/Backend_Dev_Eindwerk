@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Backend_Dev_Eindwerk.Data;
 using Backend_Dev_Eindwerk.Models;
 using Microsoft.EntityFrameworkCore;
@@ -15,21 +16,25 @@ namespace Backend_Dev_Eindwerk.Repositories
         Task<League> GetLeagueByAbbreviation(string abbrev);
         Task<League> GetLeagueById(Guid id);
         Task<League> GetLeagueByRegion(string region);
-        Task<List<League>> GetLeagues();
+        Task<List<League>> GetLeagues(bool includeSponsors);
         Task<League> UpdateLeague(League updateleague);
     }
 
     public class LeagueRepository : ILeagueRepository
     {
         private IEindwerkContext _context;
-        public LeagueRepository(IEindwerkContext context)
+
+        public LeagueRepository(IEindwerkContext context, IMapper mapper)
         {
             _context = context;
         }
 
-        public async Task<List<League>> GetLeagues()
+        public async Task<List<League>> GetLeagues(bool includeSponsors)
         {
-            return await _context.Leagues.ToListAsync();
+            if(includeSponsors)
+                return await _context.Leagues.Include(l => l.LeagueSponsors).ThenInclude(l => l.Sponsor).ToListAsync();
+            else
+                return await _context.Leagues.ToListAsync();
         }
 
         public async Task<League> GetLeagueById(Guid id)

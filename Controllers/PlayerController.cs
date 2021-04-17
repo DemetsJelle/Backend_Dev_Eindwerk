@@ -154,9 +154,9 @@ namespace Backend_Dev_Eindwerk.Controllers
         #region  Leagues
         [HttpGet]
         [Route("leagues")]
-        public async Task<List<League>> GetLeagues()
+        public async Task<List<LeagueDTO>> GetLeagues(bool includeSponsors)
         {
-            return await _playerService.GetLeagues();
+            return await _playerService.GetLeagues(includeSponsors);
         }
 
         [HttpGet]
@@ -212,9 +212,9 @@ namespace Backend_Dev_Eindwerk.Controllers
         #region  Sponsors
         [HttpGet]
         [Route("sponsors")]
-        public async Task<List<Sponsor>> GetSponsors()
+        public async Task<List<Sponsor>> GetSponsors(bool includeLeagues)
         {
-            return await _playerService.GetSponsors();
+            return await _playerService.GetSponsors(includeLeagues);
         }
 
         [HttpGet]
