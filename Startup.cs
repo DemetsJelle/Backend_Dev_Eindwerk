@@ -17,6 +17,7 @@ using Microsoft.OpenApi.Models;
 using Backend_Dev_Eindwerk.Repositories;
 using Backend_Dev_Eindwerk.Services;
 using AutoMapper;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace Backend_Dev_Eindwerk
 {
@@ -40,6 +41,16 @@ namespace Backend_Dev_Eindwerk
             services.AddDbContext<EindwerkContext>();
 
             services.AddControllers();
+
+            services.AddAuthentication(options => 
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options => 
+            {
+                options.Authority = "https://dev-3e8add9y.eu.auth0.com/";
+                options.Audience = "https://Eindwerk";
+            });
 
             services.AddTransient<IEindwerkContext, EindwerkContext>();
 
@@ -71,7 +82,7 @@ namespace Backend_Dev_Eindwerk
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

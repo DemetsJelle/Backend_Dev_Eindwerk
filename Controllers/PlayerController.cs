@@ -5,11 +5,13 @@ using Backend_Dev_Eindwerk.Data;
 using Backend_Dev_Eindwerk.DTO;
 using Backend_Dev_Eindwerk.Models;
 using Backend_Dev_Eindwerk.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Backend_Dev_Eindwerk.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api")]
     public class PlayerController : ControllerBase
@@ -22,6 +24,7 @@ namespace Backend_Dev_Eindwerk.Controllers
         }
 
         #region Player
+        [AllowAnonymous]
         [HttpGet]
         [Route("players")]
         public async Task<List<Player>> GetPlayers(bool includeTeam)
@@ -29,13 +32,14 @@ namespace Backend_Dev_Eindwerk.Controllers
             return await _playerService.GetPlayers(includeTeam);
         }
 
+        [AllowAnonymous]
         [HttpGet]
         [Route("player/id/{id}")]
         public async Task<Player> GetPlayerById(Guid id)
         {
             return await _playerService.GetPlayerById(id);
         }
-
+       
         [HttpGet]
         [Route("player/ign/{ign}")]
         public async Task<Player> GetPlayerByIgn(string ign)
@@ -43,6 +47,7 @@ namespace Backend_Dev_Eindwerk.Controllers
             return await _playerService.GetPlayerByIgn(ign);
         }
 
+        [AllowAnonymous]
         [HttpGet]
         [Route("player/name/{name}")]
         public async Task<Player> GetPlayerByName(string name)
@@ -50,6 +55,7 @@ namespace Backend_Dev_Eindwerk.Controllers
             return await _playerService.GetPlayerByName(name);
         }
 
+        [AllowAnonymous]
         [HttpGet]
         [Route("players/origen/{nationality}")]
         public async Task<List<Player>> GetPlayersByNationality(string nationality)
@@ -57,6 +63,8 @@ namespace Backend_Dev_Eindwerk.Controllers
             return await _playerService.GetPlayersByNationality(nationality);
         }
 
+
+        [AllowAnonymous]
         [HttpPost]
         [Route("player")]
         public async Task<ActionResult<Player>> AddPlayer(Player newPlayer)
@@ -71,6 +79,7 @@ namespace Backend_Dev_Eindwerk.Controllers
             }
         }
 
+        [AllowAnonymous]
         [HttpPut]
         [Route("player")]
         public async Task<ActionResult<Player>> UpdatePlayer(Player updatePlayer)
@@ -87,6 +96,8 @@ namespace Backend_Dev_Eindwerk.Controllers
         #endregion
 
         #region  Teams
+
+        [AllowAnonymous]
         [HttpGet]
         [Route("Teams")]
         public async Task<List<Team>> GetTeams(bool includePlayers)
@@ -94,6 +105,7 @@ namespace Backend_Dev_Eindwerk.Controllers
             return await _playerService.GetTeams(includePlayers);
         }
 
+        [AllowAnonymous]
         [HttpGet]
         [Route("Team/origen/{origen}")]
         public async Task<List<Team>> GetTeamsByOrigen(string origen, bool includePlayers)
@@ -101,6 +113,7 @@ namespace Backend_Dev_Eindwerk.Controllers
             return await _playerService.GetTeamsByOrigen(origen, includePlayers);
         }
 
+        [AllowAnonymous]
         [HttpGet]
         [Route("Team/id/{id}")]
         public async Task<Team> GetTeamsById(Guid id, bool includePlayers)
@@ -108,6 +121,7 @@ namespace Backend_Dev_Eindwerk.Controllers
             return await _playerService.GetTeamById(id, includePlayers);
         }
 
+        [AllowAnonymous]
         [HttpGet]
         [Route("Team/Abbreviation/{abbreviation}")]
         public async Task<Team> GetTeamsByAbbreviation(string abbreviation, bool includePlayers)
@@ -115,6 +129,7 @@ namespace Backend_Dev_Eindwerk.Controllers
             return await _playerService.GetTeamByAbbreviation(abbreviation, includePlayers);
         }
 
+        [AllowAnonymous]
         [HttpGet]
         [Route("Team/name/{name}")]
         public async Task<Team> GetTeamsByName(string name, bool includePlayers)
@@ -122,6 +137,7 @@ namespace Backend_Dev_Eindwerk.Controllers
             return await _playerService.GetTeamByName(name, includePlayers);
         }
 
+        [AllowAnonymous]
         [HttpPost]
         [Route("team")]
         public async Task<ActionResult<Team>> AddTeam(Team newTeam)
@@ -136,6 +152,7 @@ namespace Backend_Dev_Eindwerk.Controllers
             }
         }
 
+        [AllowAnonymous]
         [HttpPut]
         [Route("team")]
         public async Task<ActionResult<Team>> UpdateTeam(Team updateTeam)
@@ -152,6 +169,7 @@ namespace Backend_Dev_Eindwerk.Controllers
         #endregion
 
         #region  Leagues
+        [AllowAnonymous]
         [HttpGet]
         [Route("leagues")]
         public async Task<List<LeagueDTO>> GetLeagues(bool includeSponsors)
@@ -159,6 +177,7 @@ namespace Backend_Dev_Eindwerk.Controllers
             return await _playerService.GetLeagues(includeSponsors);
         }
 
+        [AllowAnonymous]
         [HttpGet]
         [Route("league/id/{id}")]
         public async Task<League> GetLeagueById(Guid id)
@@ -166,6 +185,7 @@ namespace Backend_Dev_Eindwerk.Controllers
             return await _playerService.GetLeagueById(id);
         }
 
+        [AllowAnonymous]
         [HttpGet]
         [Route("league/abbreviation/{abbreviation}")]
         public async Task<League> GetLeagueByAbbreviation(string abbreviation)
@@ -173,6 +193,7 @@ namespace Backend_Dev_Eindwerk.Controllers
             return await _playerService.GetLeagueByAbbreviation(abbreviation);
         }
 
+        [AllowAnonymous]
         [HttpGet]
         [Route("league/region/{region}")]
         public async Task<League> GetLeagueByRegion(string region)
@@ -180,6 +201,7 @@ namespace Backend_Dev_Eindwerk.Controllers
             return await _playerService.GetLeagueByRegion(region);
         }
 
+        [AllowAnonymous]
         [HttpPost]
         [Route("league")]
         public async Task<ActionResult<League>> AddLeague(League newLeague)
@@ -194,6 +216,7 @@ namespace Backend_Dev_Eindwerk.Controllers
             }
         }
 
+        [AllowAnonymous]
         [HttpPut]
         [Route("league")]
         public async Task<ActionResult<League>> UpdateLeague(League updateLeague)
@@ -210,6 +233,7 @@ namespace Backend_Dev_Eindwerk.Controllers
         #endregion
 
         #region  Sponsors
+        [AllowAnonymous]
         [HttpGet]
         [Route("sponsors")]
         public async Task<List<Sponsor>> GetSponsors(bool includeLeagues)
@@ -217,13 +241,23 @@ namespace Backend_Dev_Eindwerk.Controllers
             return await _playerService.GetSponsors(includeLeagues);
         }
 
+        [AllowAnonymous]
         [HttpGet]
         [Route("sponsor/id/{id}")]
-        public async Task<League> GetSponsorById(Guid id)
+        public async Task<Sponsor> GetSponsorById(Guid id)
         {
-            return await _playerService.GetLeagueById(id);
+            return await _playerService.GetSponsorById(id);
         }
 
+        [AllowAnonymous]
+        [HttpGet]
+        [Route("sponsor/name/{name}")]
+        public async Task<Sponsor> GetSponsorByName(string name)
+        {
+            return await _playerService.GetSponsorByName(name);
+        }
+
+        [AllowAnonymous]
         [HttpPost]
         [Route("sponsor")]
         public async Task<ActionResult<SponsorDTO>> AddSponsor(SponsorDTO newSponsor)
@@ -234,7 +268,22 @@ namespace Backend_Dev_Eindwerk.Controllers
             }
             catch(Exception ex)
             {
-                throw ex;
+                //throw ex;
+                return new StatusCodeResult(500);
+            }
+        }
+
+        [AllowAnonymous]
+        [HttpPut]
+        [Route("sponsor")]
+        public async Task<ActionResult<SponsorDTO>> UpdateSponsor(SponsorDTO updateSponsor)
+        {
+            try
+            {
+               return await _playerService.UpdateSponsor(updateSponsor);
+            }
+            catch(Exception ex)
+            {
                 return new StatusCodeResult(500);
             }
         }

@@ -33,6 +33,7 @@ namespace Backend_Dev_Eindwerk.Services
         Task<List<Team>> GetTeamsByOrigen(string origen, bool includePlayers);
         Task<League> UpdateLeague(League updateLeague);
         Task<Player> UpdatePlayer(Player updatePlayer);
+        Task <SponsorDTO> UpdateSponsor(SponsorDTO updateSponsor);
         Task<Team> UpdateTeam(Team updateTeam);
     }
 
@@ -192,6 +193,28 @@ namespace Backend_Dev_Eindwerk.Services
                     newSponsor.LeagueSponsors.Add(new LeagueSponsor() { LeagueId = leagueId });
                 }
                 await _sponsorRepository.AddSponsor(newSponsor);
+
+                return sponsor;
+            }
+            catch (System.Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public async Task<SponsorDTO> UpdateSponsor(SponsorDTO sponsor)
+        {
+            try
+            {
+                Sponsor updateSponsor = _mapper.Map<Sponsor>(sponsor);
+
+                updateSponsor.LeagueSponsors = new List<LeagueSponsor>();
+                foreach (var leagueId in sponsor.Leagues)
+                {
+                    updateSponsor.LeagueSponsors.Add(new LeagueSponsor() { LeagueId = leagueId });
+                }
+                await _sponsorRepository.UpdateSponsor(updateSponsor);
 
                 return sponsor;
             }
