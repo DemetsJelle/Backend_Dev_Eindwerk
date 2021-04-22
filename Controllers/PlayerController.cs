@@ -27,40 +27,75 @@ namespace Backend_Dev_Eindwerk.Controllers
         [AllowAnonymous]
         [HttpGet]
         [Route("players")]
-        public async Task<List<Player>> GetPlayers(bool includeTeam)
+        public async Task<ActionResult<List<Player>>> GetPlayers(bool includeTeam)
         {
-            return await _playerService.GetPlayers(includeTeam);
+            try
+            {
+                return new OkObjectResult(await _playerService.GetPlayers(includeTeam));
+            }
+            catch(Exception ex)
+            {
+                return new StatusCodeResult(500);
+            }
         }
 
         [AllowAnonymous]
         [HttpGet]
         [Route("player/id/{id}")]
-        public async Task<Player> GetPlayerById(Guid id)
+        public async Task<ActionResult<Player>> GetPlayerById(Guid id)
         {
-            return await _playerService.GetPlayerById(id);
+            try
+            {
+                return await _playerService.GetPlayerById(id);
+            }
+            catch(Exception ex)
+            {
+                return new StatusCodeResult(500);
+            }
         }
        
         [HttpGet]
         [Route("player/ign/{ign}")]
-        public async Task<Player> GetPlayerByIgn(string ign)
+        public async Task<ActionResult<Player>> GetPlayerByIgn(string ign)
         {
-            return await _playerService.GetPlayerByIgn(ign);
+            try
+            {
+                return await _playerService.GetPlayerByIgn(ign);
+            }
+            catch(Exception ex)
+            {
+                return new StatusCodeResult(500);
+            }
         }
 
         [AllowAnonymous]
         [HttpGet]
         [Route("player/name/{name}")]
-        public async Task<Player> GetPlayerByName(string name)
+        public async Task<ActionResult<Player>> GetPlayerByName(string name)
         {
-            return await _playerService.GetPlayerByName(name);
+            try
+            {
+                return await _playerService.GetPlayerByName(name);
+            }
+            catch(Exception ex)
+            {
+                return new StatusCodeResult(500);
+            }     
         }
 
         [AllowAnonymous]
         [HttpGet]
         [Route("players/origen/{nationality}")]
-        public async Task<List<Player>> GetPlayersByNationality(string nationality)
+        public async Task<ActionResult<List<Player>>> GetPlayersByNationality(string nationality)
         {
-            return await _playerService.GetPlayersByNationality(nationality);
+            try
+            {
+                return await _playerService.GetPlayersByNationality(nationality);
+            }
+            catch(Exception ex)
+            {
+                return new StatusCodeResult(500);
+            }
         }
 
 
@@ -100,41 +135,76 @@ namespace Backend_Dev_Eindwerk.Controllers
         [AllowAnonymous]
         [HttpGet]
         [Route("Teams")]
-        public async Task<List<Team>> GetTeams(bool includePlayers)
+        public async Task<ActionResult<List<Team>>> GetTeams(bool includePlayers)
         {
-            return await _playerService.GetTeams(includePlayers);
+            try
+            {
+                return await _playerService.GetTeams(includePlayers);
+            }
+            catch(Exception ex)
+            {
+                return new StatusCodeResult(500);
+            }
         }
 
         [AllowAnonymous]
         [HttpGet]
         [Route("Team/origen/{origen}")]
-        public async Task<List<Team>> GetTeamsByOrigen(string origen, bool includePlayers)
+        public async Task<ActionResult<List<Team>>> GetTeamsByOrigen(string origen, bool includePlayers)
         {
-            return await _playerService.GetTeamsByOrigen(origen, includePlayers);
+            try
+            {
+                return await _playerService.GetTeamsByOrigen(origen, includePlayers);
+            }
+            catch(Exception ex)
+            {
+                return new StatusCodeResult(500);
+            }
         }
 
         [AllowAnonymous]
         [HttpGet]
         [Route("Team/id/{id}")]
-        public async Task<Team> GetTeamsById(Guid id, bool includePlayers)
+        public async Task<ActionResult<Team>> GetTeamsById(Guid id, bool includePlayers)
         {
-            return await _playerService.GetTeamById(id, includePlayers);
+            try
+            {
+                return await _playerService.GetTeamById(id, includePlayers);
+            }
+            catch(Exception ex)
+            {
+                return new StatusCodeResult(500);
+            }
         }
 
         [AllowAnonymous]
         [HttpGet]
         [Route("Team/Abbreviation/{abbreviation}")]
-        public async Task<Team> GetTeamsByAbbreviation(string abbreviation, bool includePlayers)
+        public async Task<ActionResult<Team>> GetTeamsByAbbreviation(string abbreviation, bool includePlayers)
         {
-            return await _playerService.GetTeamByAbbreviation(abbreviation, includePlayers);
+            try
+            {
+                return await _playerService.GetTeamByAbbreviation(abbreviation, includePlayers);
+            }
+            catch(Exception ex)
+            {
+                return new StatusCodeResult(500);
+            }
         }
 
         [AllowAnonymous]
         [HttpGet]
         [Route("Team/name/{name}")]
-        public async Task<Team> GetTeamsByName(string name, bool includePlayers)
+        public async Task<ActionResult<Team>> GetTeamsByName(string name, bool includePlayers)
         {
-            return await _playerService.GetTeamByName(name, includePlayers);
+            try
+            {
+                return await _playerService.GetTeamByName(name, includePlayers);
+            }
+            catch(Exception ex)
+            {
+                return new StatusCodeResult(500);
+            }
         }
 
         [AllowAnonymous]
@@ -172,33 +242,61 @@ namespace Backend_Dev_Eindwerk.Controllers
         [AllowAnonymous]
         [HttpGet]
         [Route("leagues")]
-        public async Task<List<LeagueDTO>> GetLeagues(bool includeSponsors)
+        public async Task<ActionResult<List<LeagueDTO>>> GetLeagues(bool includeSponsors)
         {
-            return await _playerService.GetLeagues(includeSponsors);
+            try
+            {
+                return await _playerService.GetLeagues(includeSponsors);
+            }
+            catch(Exception ex)
+            {
+                return new StatusCodeResult(500);
+            }
         }
 
         [AllowAnonymous]
         [HttpGet]
         [Route("league/id/{id}")]
-        public async Task<League> GetLeagueById(Guid id)
+        public async Task<ActionResult<League>> GetLeagueById(Guid id)
         {
-            return await _playerService.GetLeagueById(id);
+            try
+            {
+                return await _playerService.GetLeagueById(id);
+            }
+            catch(Exception ex)
+            {
+                return new StatusCodeResult(500);
+            }
         }
 
         [AllowAnonymous]
         [HttpGet]
         [Route("league/abbreviation/{abbreviation}")]
-        public async Task<League> GetLeagueByAbbreviation(string abbreviation)
+        public async Task<ActionResult<League>> GetLeagueByAbbreviation(string abbreviation)
         {
-            return await _playerService.GetLeagueByAbbreviation(abbreviation);
+            try
+            {
+                return await _playerService.GetLeagueByAbbreviation(abbreviation);
+            }
+            catch(Exception ex)
+            {
+                return new StatusCodeResult(500);
+            }
         }
 
         [AllowAnonymous]
         [HttpGet]
         [Route("league/region/{region}")]
-        public async Task<League> GetLeagueByRegion(string region)
+        public async Task<ActionResult<League>> GetLeagueByRegion(string region)
         {
-            return await _playerService.GetLeagueByRegion(region);
+            try
+            {
+                return await _playerService.GetLeagueByRegion(region);
+            }
+            catch(Exception ex)
+            {
+                return new StatusCodeResult(500);
+            }
         }
 
         [AllowAnonymous]
@@ -236,25 +334,46 @@ namespace Backend_Dev_Eindwerk.Controllers
         [AllowAnonymous]
         [HttpGet]
         [Route("sponsors")]
-        public async Task<List<Sponsor>> GetSponsors(bool includeLeagues)
+        public async Task<ActionResult<List<Sponsor>>> GetSponsors(bool includeLeagues)
         {
-            return await _playerService.GetSponsors(includeLeagues);
+            try
+            {
+                return await _playerService.GetSponsors(includeLeagues);
+            }
+            catch(Exception ex)
+            {
+                return new StatusCodeResult(500);
+            }
         }
 
         [AllowAnonymous]
         [HttpGet]
         [Route("sponsor/id/{id}")]
-        public async Task<Sponsor> GetSponsorById(Guid id)
+        public async Task<ActionResult<Sponsor>> GetSponsorById(Guid id)
         {
-            return await _playerService.GetSponsorById(id);
+            try
+            {
+                return await _playerService.GetSponsorById(id);
+            }
+            catch(Exception ex)
+            {
+                return new StatusCodeResult(500);
+            }
         }
 
         [AllowAnonymous]
         [HttpGet]
         [Route("sponsor/name/{name}")]
-        public async Task<Sponsor> GetSponsorByName(string name)
+        public async Task<ActionResult<Sponsor>> GetSponsorByName(string name)
         {
-            return await _playerService.GetSponsorByName(name);
+            try
+            {
+                return await _playerService.GetSponsorByName(name);
+            }
+            catch(Exception ex)
+            {
+                return new StatusCodeResult(500);
+            }
         }
 
         [AllowAnonymous]

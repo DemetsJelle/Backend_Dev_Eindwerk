@@ -64,121 +64,283 @@ namespace Backend_Dev_Eindwerk.Services
         #region Player
         public async Task<List<Player>> GetPlayers(bool includeTeam)
         {
-            return await _playerRepository.GetPlayers(includeTeam);
+            try
+            {
+                return await _playerRepository.GetPlayers(includeTeam);
+            }
+            catch( System.Exception ex)
+            {
+                throw ex;
+            }
+            
         }
 
         public async Task<Player> GetPlayerById(Guid id)
         {
-            return await _playerRepository.GetPlayerById(id);
+            try
+            {
+                return await _playerRepository.GetPlayerById(id);
+            }
+            catch( System.Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public async Task<Player> GetPlayerByIgn(string ign)
         {
-            return await _playerRepository.GetPlayerByIGN(ign);
+            try
+            {
+                return await _playerRepository.GetPlayerByIGN(ign);
+            }
+            catch( System.Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public async Task<Player> GetPlayerByName(string name)
         {
-            return await _playerRepository.GetPlayerByName(name);
+            try
+            {
+                return await _playerRepository.GetPlayerByName(name);
+            }
+            catch( System.Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public async Task<List<Player>> GetPlayersByNationality(string nationality)
         {
-            return await _playerRepository.GetPlayersByNationality(nationality);
+            try
+            {
+                return await _playerRepository.GetPlayersByNationality(nationality);
+            }
+            catch( System.Exception ex)
+            {
+                throw ex;
+            } 
         }
 
         public async Task<Player> AddPlayer(Player newPlayer)
         {
-            return await _playerRepository.AddPlayer(newPlayer);
+            try
+            {
+                return await _playerRepository.AddPlayer(newPlayer);
+            }
+            catch( System.Exception ex)
+            {
+                throw ex;
+            } 
         }
         public async Task<Player> UpdatePlayer(Player updatePlayer)
         {
-            return await _playerRepository.UpdatePlayer(updatePlayer);
+            try
+            {
+                return await _playerRepository.UpdatePlayer(updatePlayer);
+            }
+            catch( System.Exception ex)
+            {
+                throw ex;
+            } 
         }
         #endregion
 
         #region Teams
         public async Task<List<Team>> GetTeams(bool includePlayers)
         {
-            return await _teamRepository.GetTeams(includePlayers);
+            try
+            {
+                return await _teamRepository.GetTeams(includePlayers);
+            }
+            catch( System.Exception ex)
+            {
+                throw ex;
+            } 
         }
 
         public async Task<List<Team>> GetTeamsByOrigen(string origen, bool includePlayers)
         {
-            return await _teamRepository.GetTeamsByOrigen(origen, includePlayers);
+            try
+            {
+                return await _teamRepository.GetTeamsByOrigen(origen, includePlayers);
+            }
+            catch( System.Exception ex)
+            {
+                throw ex;
+            } 
         }
 
         public async Task<Team> GetTeamById(Guid id, bool includePlayers)
         {
-            return await _teamRepository.GetTeamById(id, includePlayers);
+            try
+            {
+                return await _teamRepository.GetTeamById(id, includePlayers);
+            }
+            catch( System.Exception ex)
+            {
+                throw ex;
+            } 
         }
 
         public async Task<Team> GetTeamByAbbreviation(string abbrev, bool includePlayers)
         {
-            return await _teamRepository.GetTeamByAbbreviation(abbrev, includePlayers);
+            try
+            {
+                return await _teamRepository.GetTeamByAbbreviation(abbrev, includePlayers);
+            }
+            catch( System.Exception ex)
+            {
+                throw ex;
+            } 
         }
 
         public async Task<Team> GetTeamByName(string name, bool includePlayers)
         {
-            return await _teamRepository.GetTeamByName(name, includePlayers);
+            try
+            {
+                return await _teamRepository.GetTeamByName(name, includePlayers);
+            }
+            catch( System.Exception ex)
+            {
+                throw ex;
+            } 
         }
 
         public async Task<Team> AddTeam(Team newTeam)
         {
-            return await _teamRepository.AddTeam(newTeam);
+            try
+            {
+                return await _teamRepository.AddTeam(newTeam);
+            }
+            catch( System.Exception ex)
+            {
+                throw ex;
+            } 
         }
 
         public async Task<Team> UpdateTeam(Team updateTeam)
         {
-            return await _teamRepository.UpdateTeam(updateTeam);
+            try
+            {
+                return await _teamRepository.UpdateTeam(updateTeam);
+            }
+            catch( System.Exception ex)
+            {
+                throw ex;
+            } 
         }
         #endregion
 
         #region Leagues
         public async Task<List<LeagueDTO>> GetLeagues(bool includeSponsors)
         {
-            return _mapper.Map<List<LeagueDTO>>(await _leagueRepository.GetLeagues(includeSponsors));
+            try
+            {
+                return _mapper.Map<List<LeagueDTO>>(await _leagueRepository.GetLeagues(includeSponsors));
+            }
+            catch( System.Exception ex)
+            {
+                throw ex;
+            } 
         }
         public async Task<League> GetLeagueById(Guid id)
         {
-            return await _leagueRepository.GetLeagueById(id);
+            try
+            {
+                return await _leagueRepository.GetLeagueById(id);
+            }
+            catch( System.Exception ex)
+            {
+                throw ex;
+            } 
         }
 
         public async Task<League> GetLeagueByAbbreviation(string abbrev)
         {
-            return await _leagueRepository.GetLeagueByAbbreviation(abbrev);
+            try
+            {
+                return await _leagueRepository.GetLeagueByAbbreviation(abbrev);
+            }
+            catch( System.Exception ex)
+            {
+                throw ex;
+            } 
         }
 
         public async Task<League> GetLeagueByRegion(string region)
         {
-            return await _leagueRepository.GetLeagueByRegion(region);
+            try
+            {
+                return await _leagueRepository.GetLeagueByRegion(region);
+            }
+            catch( System.Exception ex)
+            {
+                throw ex;
+            } 
         }
 
         public async Task<League> AddLeague(League newLeague)
         {
-            return await _leagueRepository.AddLeague(newLeague);
+            try
+            {
+                return await _leagueRepository.AddLeague(newLeague);
+            }
+            catch( System.Exception ex)
+            {
+                throw ex;
+            } 
         }
 
         public async Task<League> UpdateLeague(League updateLeague)
         {
-            return await _leagueRepository.UpdateLeague(updateLeague);
+            try
+            {
+                return await _leagueRepository.UpdateLeague(updateLeague);
+            }
+            catch( System.Exception ex)
+            {
+                throw ex;
+            } 
         }
         #endregion
 
         #region  Sponsor
         public async Task<List<Sponsor>> GetSponsors(bool includeLeagues)
         {
-            return await _sponsorRepository.GetSponsors(includeLeagues);
+            try
+            {
+                return await _sponsorRepository.GetSponsors(includeLeagues);
+            }
+            catch( System.Exception ex)
+            {
+                throw ex;
+            } 
         }
 
         public async Task<Sponsor> GetSponsorById(Guid id)
         {
-            return await _sponsorRepository.GetSponsorById(id);
+            try
+            {
+                return await _sponsorRepository.GetSponsorById(id);
+            }
+            catch( System.Exception ex)
+            {
+                throw ex;
+            } 
         }
 
         public async Task<Sponsor> GetSponsorByName(string name)
         {
-            return await _sponsorRepository.GetSponsorByName(name);
+            try
+            {
+                return await _sponsorRepository.GetSponsorByName(name);
+            }
+            catch( System.Exception ex)
+            {
+                throw ex;
+            } 
         }
 
         public async Task<SponsorDTO> AddSponsor(SponsorDTO sponsor)
