@@ -127,6 +127,11 @@ namespace Backend_Dev_Eindwerk.Services
         {
             try
             {
+                if(newPlayer.Nationality == "")
+                {
+                    newPlayer.Nationality = "Unspecified";
+                }
+
                 return await _playerRepository.AddPlayer(newPlayer);
             }
             catch( System.Exception ex)
@@ -212,6 +217,10 @@ namespace Backend_Dev_Eindwerk.Services
         {
             try
             {
+                if(newTeam.LandOfOrigen == "")
+                {
+                    newTeam.LandOfOrigen = "Unspecified";
+                }
                 return await _teamRepository.AddTeam(newTeam);
             }
             catch( System.Exception ex)
