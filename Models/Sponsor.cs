@@ -9,7 +9,7 @@ namespace Backend_Dev_Eindwerk.Models
     {
         public Guid SponsorId { get; set; }
 
-        [Required(ErrorMessage ="Naam sponsor verplicht")]
+        [Required(ErrorMessage ="Name sponsor required")]
         public String Name { get; set; }
 
         [JsonIgnore]

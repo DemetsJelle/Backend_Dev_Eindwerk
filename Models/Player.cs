@@ -8,13 +8,14 @@ namespace Backend_Dev_Eindwerk.Models
     {
         public Guid PlayerId { get; set; }
 
-        [Required(ErrorMessage ="Naam speler verplicht")]
+        [Required(ErrorMessage ="Name player required")]
         public String Name { get; set; }
 
-        [Required(ErrorMessage ="Spelersnaam verplicht")]
+        [Required(ErrorMessage ="Ingame name required")]
         public String Ign { get; set; }
 
-        [Required(ErrorMessage ="Geboortedatum verplicht")]
+        [Required(ErrorMessage ="Date of brith required")]
+        [DateOfBirthAttribute]
         public String DateOfBirth { get; set; }
 
         public String Nationality { get; set; }

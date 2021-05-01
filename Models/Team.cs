@@ -9,10 +9,10 @@ namespace Backend_Dev_Eindwerk.Models
     {
         public Guid TeamId { get; set; }
 
-        [Required(ErrorMessage ="Naam team verplicht")]
+        [Required(ErrorMessage ="Name team required")]
         public string Name { get; set; }
 
-        [Required(ErrorMessage ="Afkorting team verplicht")]
+        [Required(ErrorMessage ="Abbreviation teamname required")]
         public string Abbreviation { get; set; }
 
         public string LandOfOrigen { get; set; }

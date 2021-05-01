@@ -10,13 +10,13 @@ namespace Backend_Dev_Eindwerk.Models
 
         public Guid LeagueId { get; set; }
 
-        [Required(ErrorMessage ="Naam league verplicht")]
+        [Required(ErrorMessage ="Name of league required")]
         public string Name { get; set; }
 
-        [Required(ErrorMessage ="Afkorting league verplicht")]
+        [Required(ErrorMessage ="Abbreviation league name required")]
         public string Abbreviation { get; set; }
 
-        [Required(ErrorMessage ="Regio league verplicht")]
+        [Required(ErrorMessage ="Region required")]
         public string Region { get; set; }
 
         [JsonIgnore]
